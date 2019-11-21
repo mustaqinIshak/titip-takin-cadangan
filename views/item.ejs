@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/navbar') %>
+    <% const rows = Math.floor(12/data.length) %>
+    <div class="container">
+      <div class="row mt-5">
+        <% data.forEach(item => { let temp = item.dataValues %>
+        <div class="col-sm-<%= rows %>">
+          <img src="/public/pict/<%= temp.name %>" alt="" width="100%" />
+          <div class="tengah" style="text-align: center;">
+            <p><%= temp.name %></p>
+            <a href="/transaksi/<%= temp.id %>">
+              <button type="button" class="btn btn-primary">BUY</button>
+            </a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>
