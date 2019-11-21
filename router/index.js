@@ -19,7 +19,7 @@ login.post('/', (req, res) => {
       if (!data) {
         res.send('tidak ditemukan')
       } else {
-        res.send(data)
+        res.render('home')
         req.session.user = {}
       }
     })
@@ -32,7 +32,24 @@ login.get('/register', (req, res) => {
   res.render('register')
 })
 login.post('/register', (req, res) => {
-  
+  // console.log(req.body)
+  model.create(req.body)
+  .then(model => {
+    res.redirect('home')
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
+login.get('/admin', (req, res) => {
+  model.findAll()
+  .then(user => {
+    res.render('admin', {user})
+  })
+  .catch(err => {
+    console.log(err)
+  })
 })
 
 module.exports = login
